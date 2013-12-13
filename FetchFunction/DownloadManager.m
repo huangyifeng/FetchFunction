@@ -47,7 +47,7 @@
     if (!self.URLSession)
     {
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration backgroundSessionConfiguration:BACKGROUND_SESSION_IDENTIFIER];
-        self.URLSession = [NSURLSession sessionWithConfiguration:config];
+        self.URLSession = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
     }
 }
 
@@ -81,47 +81,19 @@
 - (void)downloadImage:(NSString *)imagePath
 {
     NSURL *imageURL = [NSURL URLWithString:imagePath];
-    NSURLSessionDownloadTask *downloadImageTask = [self.URLSession downloadTaskWithURL:imageURL
-                                                                     completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                                                                         if (error)
-                                                                         {
-                                                                             NSLog(@"download error: %@", [error localizedDescription]);
-                                                                             return;
-                                                                         }
-                                                                         
-                                                                         //save to local document
-                                                                         NSFileManager *fileManager = [NSFileManager defaultManager];
-                                                                         NSURL *documentURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-                                                                         if (error)
-                                                                         {
-                                                                             NSLog(@"find folder error: %@", [error localizedDescription]);
-                                                                             return;
-                                                                         }
-                                                                         
-                                                                         
-                                                                         NSURL *destination = [documentURL URLByAppendingPathComponent:[[response URL] lastPathComponent]];
-                                                                         if ([fileManager fileExistsAtPath:[destination absoluteString]])
-                                                                         {
-                                                                             [fileManager removeItemAtURL:destination error:&error];
-                                                                             if (error)
-                                                                             {
-                                                                                 NSLog(@"remove error: %@", [error localizedDescription]);
-                                                                                 return;
-                                                                             }
-                                                                         }
-                                                                         
-                                                                         BOOL success = [fileManager copyItemAtURL:location toURL:destination error:&error];
-                                                                         if (!success)
-                                                                         {
-                                                                             NSLog(@"copy error: %@", [error localizedDescription]);
-                                                                             return;
-                                                                         }
-                                                                         NSLog(@"Done. Image File downloaded");
-                                                                     }];
+    NSURLSessionDownloadTask *downloadImageTask = [self.URLSession downloadTaskWithURL:imageURL];
     [downloadImageTask resume];
 }
 
 #pragma mark - NSURLSessionDownloadDelegate
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"download error, %@", [error localizedDescription]);
+    }
+}
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
@@ -137,7 +109,7 @@
 
     NSURLResponse *response = downloadTask.response;
     NSURL *destination = [documentURL URLByAppendingPathComponent:[[response URL] lastPathComponent]];
-    if ([fileManager fileExistsAtPath:[destination absoluteString]])
+    if ([fileManager fileExistsAtPath:[destination path]])
     {
         [fileManager removeItemAtURL:destination error:&error];
         if (error)

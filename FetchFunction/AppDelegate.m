@@ -11,11 +11,11 @@
 
 @implementation AppDelegate
 
-//- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-//{
-//    [[DownloadManager sharedManager] startDownload];
-//    completionHandler(UIBackgroundFetchResultNewData);
-//}
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [[DownloadManager sharedManager] startDownload];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
