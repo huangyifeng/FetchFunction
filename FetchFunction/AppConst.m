@@ -9,5 +9,7 @@
 #import "AppConst.h"
 
 NSString * const HAS_NEW_DATA_PATH = @"https://raw.github.com/huangyifeng/HostPlainFile/master/BKExecution/hasNewData";
-
 NSString * const IMAGE_PATH_URL = @"https://raw.github.com/huangyifeng/HostPlainFile/master/BKExecution/imagePath";
+
+NSString * const BACKGROUND_SESSION_IDENTIFIER = @"com.cybozu.background.session.identifier";
+

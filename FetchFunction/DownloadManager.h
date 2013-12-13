@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DownloadManager : NSObject
+@interface DownloadManager : NSObject <NSURLSessionDownloadDelegate>
 
 + (DownloadManager *)sharedManager;
 

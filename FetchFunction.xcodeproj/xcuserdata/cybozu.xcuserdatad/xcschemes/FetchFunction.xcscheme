@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BB5968C9185858DE00006342"
-               BuildableName = "FetchFunction.app"
-               BlueprintName = "FetchFunction"
+               BuildableName = "BK_Session.app"
+               BlueprintName = "BK_Session"
                ReferencedContainer = "container:FetchFunction.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BB5968C9185858DE00006342"
-            BuildableName = "FetchFunction.app"
-            BlueprintName = "FetchFunction"
+            BuildableName = "BK_Session.app"
+            BlueprintName = "BK_Session"
             ReferencedContainer = "container:FetchFunction.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BB5968C9185858DE00006342"
-            BuildableName = "FetchFunction.app"
-            BlueprintName = "FetchFunction"
+            BuildableName = "BK_Session.app"
+            BlueprintName = "BK_Session"
             ReferencedContainer = "container:FetchFunction.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BB5968C9185858DE00006342"
-            BuildableName = "FetchFunction.app"
-            BlueprintName = "FetchFunction"
+            BuildableName = "BK_Session.app"
+            BlueprintName = "BK_Session"
             ReferencedContainer = "container:FetchFunction.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

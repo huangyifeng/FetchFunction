@@ -7,5 +7,6 @@
 //
 
 extern NSString * const HAS_NEW_DATA_PATH;
-
 extern NSString * const IMAGE_PATH_URL;
+
+extern NSString * const BACKGROUND_SESSION_IDENTIFIER;

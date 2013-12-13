@@ -46,7 +46,7 @@
 {
     if (!self.URLSession)
     {
-        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration backgroundSessionConfiguration:BACKGROUND_SESSION_IDENTIFIER];
         self.URLSession = [NSURLSession sessionWithConfiguration:config];
     }
 }
@@ -54,38 +54,28 @@
 - (void)loadHasNewDataFile
 {
     NSURL *newDataFileURL = [NSURL URLWithString:HAS_NEW_DATA_PATH];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:newDataFileURL];
-    NSURLSessionDataTask *dataTask = [self.URLSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error)
-        {
-            NSLog(@"error: %@",[error localizedDescription]);
-            return;
-        }
+    NSData *data = [NSData dataWithContentsOfURL:newDataFileURL];
+    if (data)
+    {
         NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"Done, result is %@", result);
         if ([@"1" isEqualToString:result])
         {
             [self loadImagePathFile];
         }
-    }];
-    [dataTask resume];
+    }
 }
 
 - (void)loadImagePathFile
 {
     NSURL *imagePathURL = [NSURL URLWithString:IMAGE_PATH_URL];
-    NSURLSessionDataTask *dataTask = [self.URLSession dataTaskWithURL:imagePathURL
-                                                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                        if (error)
-                                                        {
-                                                            NSLog(@"error: %@", [error localizedDescription]);
-                                                            return;
-                                                        }
-                                                        NSString *imagePath = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                                        NSLog(@"Done! Image path is %@", imagePath);
-                                                        [self downloadImage:imagePath];
-                                                    }];
-    [dataTask resume];
+    NSData *data = [NSData dataWithContentsOfURL:imagePathURL];
+    if (data)
+    {
+        NSString *imagePath = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Done! Image path is %@", imagePath);
+        [self downloadImage:imagePath];
+    }
 }
 
 - (void)downloadImage:(NSString *)imagePath
@@ -130,6 +120,52 @@
                                                                      }];
     [downloadImageTask resume];
 }
+
+#pragma mark - NSURLSessionDownloadDelegate
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    NSError *error = nil;
+    //save to local document
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    if (error)
+    {
+        NSLog(@"find folder error: %@", [error localizedDescription]);
+        return;
+    }
+
+    NSURLResponse *response = downloadTask.response;
+    NSURL *destination = [documentURL URLByAppendingPathComponent:[[response URL] lastPathComponent]];
+    if ([fileManager fileExistsAtPath:[destination absoluteString]])
+    {
+        [fileManager removeItemAtURL:destination error:&error];
+        if (error)
+        {
+            NSLog(@"remove error: %@", [error localizedDescription]);
+            return;
+        }
+    }
+    
+    BOOL success = [fileManager copyItemAtURL:location toURL:destination error:&error];
+    if (!success)
+    {
+        NSLog(@"copy error: %@", [error localizedDescription]);
+        return;
+    }
+    NSLog(@"Done. Image File downloaded");
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    
+}
+
 
 @end
 

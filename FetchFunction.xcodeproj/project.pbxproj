@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BB5968CA185858DE00006342 /* FetchFunction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchFunction.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5968CA185858DE00006342 /* BK_Session.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BK_Session.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5968CD185858DE00006342 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB5968CF185858DE00006342 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BB5968D1185858DE00006342 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -98,7 +98,7 @@
 		BB5968CB185858DE00006342 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BB5968CA185858DE00006342 /* FetchFunction.app */,
+				BB5968CA185858DE00006342 /* BK_Session.app */,
 				BB5968EB185858DE00006342 /* FetchFunctionTests.xctest */,
 			);
 			name = Products;
@@ -181,9 +181,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BB5968C9185858DE00006342 /* FetchFunction */ = {
+		BB5968C9185858DE00006342 /* BK_Session */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BB5968FC185858DE00006342 /* Build configuration list for PBXNativeTarget "FetchFunction" */;
+			buildConfigurationList = BB5968FC185858DE00006342 /* Build configuration list for PBXNativeTarget "BK_Session" */;
 			buildPhases = (
 				BB5968C6185858DE00006342 /* Sources */,
 				BB5968C7185858DE00006342 /* Frameworks */,
@@ -193,9 +193,9 @@
 			);
 			dependencies = (
 			);
-			name = FetchFunction;
+			name = BK_Session;
 			productName = FetchFunction;
-			productReference = BB5968CA185858DE00006342 /* FetchFunction.app */;
+			productReference = BB5968CA185858DE00006342 /* BK_Session.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BB5968EA185858DE00006342 /* FetchFunctionTests */ = {
@@ -250,7 +250,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BB5968C9185858DE00006342 /* FetchFunction */,
+				BB5968C9185858DE00006342 /* BK_Session */,
 				BB5968EA185858DE00006342 /* FetchFunctionTests */,
 			);
 		};
@@ -303,7 +303,7 @@
 /* Begin PBXTargetDependency section */
 		BB5968F1185858DE00006342 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BB5968C9185858DE00006342 /* FetchFunction */;
+			target = BB5968C9185858DE00006342 /* BK_Session */;
 			targetProxy = BB5968F0185858DE00006342 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -488,13 +488,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BB5968FC185858DE00006342 /* Build configuration list for PBXNativeTarget "FetchFunction" */ = {
+		BB5968FC185858DE00006342 /* Build configuration list for PBXNativeTarget "BK_Session" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB5968FD185858DE00006342 /* Debug */,
 				BB5968FE185858DE00006342 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB5968FF185858DE00006342 /* Build configuration list for PBXNativeTarget "FetchFunctionTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +504,7 @@
 				BB596901185858DE00006342 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

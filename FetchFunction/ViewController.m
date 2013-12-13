@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "DownloadManager.h"
 
 @interface ViewController ()
+
+- (IBAction)startDownload:(id)sender;
 
 @end
 
@@ -24,6 +27,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - IBAction
+
+- (void)startDownload:(id)sender
+{
+    [NSThread sleepForTimeInterval:10];
+    [[DownloadManager sharedManager] startDownload];
 }
 
 @end
